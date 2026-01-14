@@ -3,6 +3,7 @@ module Unifi
   class Client
 
     module Vouchers
+      include ResponseNormalizer
 
       def create_voucher(options = {}, site = @site)
         body = { cmd: 'create-voucher',
@@ -13,23 +14,20 @@ module Unifi
         body[:up] = options[:up] if options[:up]
         body[:down] = options[:down] if options[:down]
         body[:bytes] = options[:bytes] if options[:bytes]
-        response = self.class.post("/s/#{site}/cmd/hotspot",
-                                   { body: body.to_json } )
-        response.parsed_response
+        normalize_unifi_response(self.class.post("/s/#{site}/cmd/hotspot",
+                                   { body: body.to_json } ))
       end
 
       def stat_voucher(create_time = nill, site = @site)
         body = { create_time: create_time }
-        response = self.class.get("/s/#{site}/stat/voucher",
-                                   { body: body.to_json })
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/s/#{site}/stat/voucher",
+                                   { body: body.to_json }))
       end
 
       def revoke_voucher(voucher_id = nill, site = @site)
         body = { cmd: 'delete-voucher', _id: voucher_id }
-        response = self.class.post("/s/#{site}/cmd/hotspot",
-                                   { body: body.to_json } )
-        response.parsed_response
+        normalize_unifi_response(self.class.post("/s/#{site}/cmd/hotspot",
+                                   { body: body.to_json } ))
       end
 
     end

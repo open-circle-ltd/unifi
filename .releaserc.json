@@ -6,7 +6,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "ruby -e \"s = File.read('lib/unifi/version.rb'); s.sub!(/VERSION = '.*'/, \"VERSION = '${nextRelease.version}'\"); File.write('lib/unifi/version.rb', s)\""
+        "prepareCmd": "NEXT_VERSION=${nextRelease.version} ruby scripts/update_version.rb"
       }
     ],
     [

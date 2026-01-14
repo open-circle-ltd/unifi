@@ -1,5 +1,5 @@
 # Unifi
-A Ruby interface to UniFi Controller API. Supported versions 5.x.x.
+A Ruby interface to UniFi Controller API. Supported versions 5.x.x, 6.x.x and 7.x.x.
 It's fork [Unifi Api Browser](https://github.com/malle-pietje/UniFi-API-browser/blob/master/phpapi/class.unifi.php) written in php.
 
 ## Installation

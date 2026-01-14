@@ -55,31 +55,31 @@ It will return something like that:
 "admin_name"=>"sergey", "code"=>"9224743381", ...}], 
 "meta"=>{"rc"=>"ok"}}
 ```
-## Methods
+# Unifi
 
-* login
-* logout
-* add_site
-* adopt_device
-* authorize_guest
-* unauthorize_guest
-* block_sta
-* unblock_sta
-* create_hotspotop
-* create_voucher
-* delete_site
-* disable_ap
-* led_override
-* list_admins
-* list_alarms
-* count_alarms
-* list_devices
-* list_clients
-* list_dashboard
-* list_dynamicdns
-* list_events
-* list_extension
-* list_guests
+A Ruby client for the UniFi Controller API.
+
+...existing code...
+
+## Versioning & Installation
+
+- This gem uses a single source of truth for the version in lib/unifi/version.rb.
+- To use a specific version of the gem directly from GitHub, reference a tag in your project's `Gemfile`:
+
+```ruby
+gem 'unifi', git: 'https://github.com/open-circle-ltd/unifi', tag: 'v0.1.0'
+```
+
+- We run Semantic Release on merges to `main`. When a PR is merged with Conventional Commit messages, the workflow will:
+    - determine the next semantic version,
+    - update `lib/unifi/version.rb`,
+    - create a git tag (e.g. `v1.2.3`) and a GitHub release.
+
+- If you prefer to pin to a commit instead of a tag, use `ref:` with the commit SHA:
+
+```ruby
+gem 'unifi', git: 'https://github.com/open-circle-ltd/unifi', ref: 'a1b2c3d'
+```
 * list_health
 * list_hotspotop
 * list_networkconf

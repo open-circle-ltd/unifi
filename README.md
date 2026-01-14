@@ -1,13 +1,14 @@
 # Unifi
-A Ruby interface to UniFi Controller API. Supported versions 5.x.x, 6.x.x and 7.x.x.
+A Ruby interface to UniFi Controller API. Supported versions 5.x.x, 6.x.x and 7.x.x. 8.x.x is currently untested.
 It's fork [Unifi Api Browser](https://github.com/malle-pietje/UniFi-API-browser/blob/master/phpapi/class.unifi.php) written in php.
 
-## Installation
+## Versioning & Installation
 
-Add this line to your application's Gemfile:
+- This gem uses a single source of truth for the version in lib/unifi/version.rb.
+- To use a specific version of the gem directly from GitHub, reference a tag in your project's `Gemfile`:
 
 ```ruby
-gem 'unifi'
+gem 'unifi', git: 'https://github.com/open-circle-ltd/unifi', tag: 'v0.1.0'
 ```
 
 And then execute:
@@ -17,6 +18,17 @@ And then execute:
 Or install it yourself as:
 
     $ gem install unifi
+
+- We run Semantic Release on merges to `main`. When a PR is merged with Conventional Commit messages, the workflow will:
+    - determine the next semantic version,
+    - update `lib/unifi/version.rb`,
+    - create a git tag (e.g. `v1.2.3`) and a GitHub release.
+
+- If you prefer to pin to a commit instead of a tag, use `ref:` with the commit SHA:
+
+```ruby
+gem 'unifi', git: 'https://github.com/open-circle-ltd/unifi', ref: 'a1b2c3d'
+```
 
 ## Usage
 
@@ -55,31 +67,7 @@ It will return something like that:
 "admin_name"=>"sergey", "code"=>"9224743381", ...}], 
 "meta"=>{"rc"=>"ok"}}
 ```
-# Unifi
 
-A Ruby client for the UniFi Controller API.
-
-...existing code...
-
-## Versioning & Installation
-
-- This gem uses a single source of truth for the version in lib/unifi/version.rb.
-- To use a specific version of the gem directly from GitHub, reference a tag in your project's `Gemfile`:
-
-```ruby
-gem 'unifi', git: 'https://github.com/open-circle-ltd/unifi', tag: 'v0.1.0'
-```
-
-- We run Semantic Release on merges to `main`. When a PR is merged with Conventional Commit messages, the workflow will:
-    - determine the next semantic version,
-    - update `lib/unifi/version.rb`,
-    - create a git tag (e.g. `v1.2.3`) and a GitHub release.
-
-- If you prefer to pin to a commit instead of a tag, use `ref:` with the commit SHA:
-
-```ruby
-gem 'unifi', git: 'https://github.com/open-circle-ltd/unifi', ref: 'a1b2c3d'
-```
 * list_health
 * list_hotspotop
 * list_networkconf

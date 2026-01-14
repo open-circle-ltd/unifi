@@ -3,33 +3,29 @@ module Unifi
   class Client
 
     module Sites
+      include ResponseNormalizer
 
       def add_site(description, site = @site)
         body = { cmd: 'add-site', desc: description }
-        response = self.class.post("/s/#{site}/cmd/sitemgr", { body: body.to_json })
-        response.parsed_response
+        normalize_unifi_response(self.class.post("/s/#{site}/cmd/sitemgr", { body: body.to_json }))
       end
 
 
       def delete_site(site_id, site = @site)
         body = { site: site_id, cmd: 'delete-site' }
-        response = self.class.post("/s/#{site}/cmd/sitemgr", { body: body.to_json })
-        response.parsed_response
+        normalize_unifi_response(self.class.post("/s/#{site}/cmd/sitemgr", { body: body.to_json }))
       end
 
       def list_sites
-        response = self.class.get("/self/sites")
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/self/sites"))
       end
 
       def stat_sites
-        response = self.class.get("/stat/sites")
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/stat/sites"))
       end
 
       def stat_sysinfo(site = @site)
-        response = self.class.get("/s/#{site}/stat/sysinfo")
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/s/#{site}/stat/sysinfo"))
       end
 
     end

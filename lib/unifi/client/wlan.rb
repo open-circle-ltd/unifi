@@ -3,11 +3,11 @@ module Unifi
   class Client
 
     module Wlan
+      include ResponseNormalizer
 
       def delete_wlan(wlan_id, site = @site)
         body = {}
-        response = self.class.post("/s/#{site}/del/wlanconf/#{wlan_id}", { body: body.to_json })
-        response.parsed_response
+        normalize_unifi_response(self.class.post("/s/#{site}/del/wlanconf/#{wlan_id}", { body: body.to_json }))
       end
 
       def create_wlan(name,
@@ -40,26 +40,22 @@ module Unifi
                  schedule_enabled: schedule_enabled,
                  schedule: schedule }
         body[:vlan] = vlan if vlan && vlan_enabled
-        response = self.class.get("/s/#{site}/add/wlanconf", { body: body.to_json })
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/s/#{site}/add/wlanconf", { body: body.to_json }))
       end
 
       def set_wlansettings(wlan_id, x_passphrase, name = '', site = @site)
         body = {}
         body[:x_passphrase] = x_passphrase if x_passphrase
         body[:name] = name if name
-        response = self.class.get("/s/#{site}/upd/wlanconf/#{wlan_id}", { body: body.to_json })
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/s/#{site}/upd/wlanconf/#{wlan_id}", { body: body.to_json }))
       end
 
       def list_wlan_groups(site = @site)
-        response = self.class.get("/s/#{site}/list/wlangroup")
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/s/#{site}/list/wlangroup"))
       end
 
       def list_wlanconf(site = @site)
-        response = self.class.get("/s/#{site}/list/wlanconf")
-        response.parsed_response
+        normalize_unifi_response(self.class.get("/s/#{site}/list/wlanconf"))
       end
       
     end

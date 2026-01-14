@@ -2,6 +2,8 @@
 module Unifi
   class Client
 
+    require_relative 'response_normalizer'
+
     module Sites
       include ResponseNormalizer
 

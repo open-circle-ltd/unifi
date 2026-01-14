@@ -5,6 +5,8 @@ require 'unifi/client/guests'
 require 'unifi/client/wlan'
 require 'unifi/client/main'
 
+require_relative 'client/response_normalizer'
+
 module Unifi
   class Client
     include HTTParty

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module Unifi
-  module Client
+  class Client
+    require_relative 'response_normalizer'
     module ResponseNormalizer
       private
 
